@@ -10,7 +10,7 @@ from radish.feature import Feature
 from radish.hookregistry import before, after
 from radish.extensionregistry import extension
 
-import syslog
+# import syslog
 
 @extension
 class SyslogWriter(object):
@@ -51,13 +51,14 @@ class SyslogWriter(object):
         except Exception:  # pylint: disable=broad-except
             pass
         finally:
-            syslog.syslog(syslog.LOG_INFO, message)
+            pass
+            # syslog.syslog(syslog.LOG_INFO, message)
 
     def syslog_writer_before_all(self, features, marker):  # pylint: disable=unused-argument
         """
             Opens the syslog
         """
-        syslog.openlog("radish")
+        # syslog.openlog("radish")
         self.log(u"begin run {0}".format(marker))
 
     def syslog_writer_after_all(self, features, marker):  # pylint: disable=unused-argument
@@ -65,7 +66,7 @@ class SyslogWriter(object):
             Closes the syslog
         """
         self.log(u"end run {0}".format(marker))
-        syslog.closelog()
+        # syslog.closelog()
 
     def syslog_writer_before_each_feature(self, feature):
         """
